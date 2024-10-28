@@ -1,2 +1,6 @@
 fastapi
 uvicorn
+peewee
+shunting-yard
+mysqlclient
+python-dotenv
