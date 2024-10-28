@@ -1,15 +1,25 @@
-from typing import Union
+##Le fichier principal est le point d'entrée de l'application.
+
 
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+
+from app.classs.ctrls.calculCTRL import calculCTRL
+from app.classs.ctrls.dowloadCTRL import dowloadCTRL
 
 app = FastAPI()
 
-
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def root():
+    return {"message": ""}
 
+@app.post("/{calcul}")
+async def root(calcul):
+    calc = calculCTRL()
+    return {"message": calc.post(calcul)}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/dowload", response_class=FileResponse)
+async def root():
+    dowload = dowloadCTRL()
+    dataFile = dowload.get()
+    return dataFile[0] + dataFile[1]
