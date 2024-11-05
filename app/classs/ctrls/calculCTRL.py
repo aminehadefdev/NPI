@@ -13,7 +13,7 @@ class calculCTRL(Icontroller):
             Calcul.create(calcul=calcul, result=result)
             return result
         except WrongExpressionError:
-            return "vous ne pouvez pas avoir de nombre"
+            return "erreur "
         except Exception:
             return "Une erreur inattendue est survenue"
     def get(self):

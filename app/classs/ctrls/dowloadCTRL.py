@@ -2,6 +2,7 @@
 import csv
 import uuid
 
+from app.config.config import config
 from app.classs.interfaces.Icontroller import Icontroller
 from app.classs.entities.Calcul import Calcul
 
@@ -10,7 +11,7 @@ class dowloadCTRL(Icontroller):
     def post(self):
         pass
     def get(self):
-        path = '/app/Dowload/'
+        path = config.get_attr("DOWLOAD_PATH")
         file_name = str(uuid.uuid4()) + '.csv'
         csv_file_path = path + file_name
         self.create_empty_csv(csv_file_path)
